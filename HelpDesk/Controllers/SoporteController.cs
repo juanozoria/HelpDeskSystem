@@ -297,46 +297,5 @@ namespace HelpDesk.Controllers
             return RedirectToAction("ConsultaMasiva");
         }
 
-
-        //[HttpGet]
-        //public ActionResult AdjuntarDocuments(int id)
-        //{
-  
-
-        //    return View();
-        //}
-
-    
-        //[HttpPost]
-        //public ActionResult AdjuntarDocuments(int IdTicket, HttpPostedFileBase Documento, FormCollection fr)
-        //{
-        //    try
-        //    {
-
-        //        string NuevoNombre = Documento.FileName + "_" + IdTicket;
-        //      //  string RutaDocument = System.Configuration.ConfigurationManager.AppSettings["RutaDocument"].ToString();
-        //        string RutaDocument =  @"C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\HelpDesk\images\";
-        //        string SavePath = RutaDocument + NuevoNombre;
-
-
-        //        FileStream fs = new FileStream(SavePath, FileMode.CreateNew, FileAccess.ReadWrite);
-        //        Documento.InputStream.Seek(0, SeekOrigin.Begin);
-        //        Documento.InputStream.CopyTo(fs);
-        //        fs.Close();
-
-
-
-        //        return View();
-        //    }
-
-        //    catch (Exception Ex)
-        //    {
-
-        //        Funciones.MostrarError(this, Ex);
-        //        return RedirectToAction("AdjuntarDocuments", new { id = Idafi });
-        //    }
-
-
-        //}
     }
 }
