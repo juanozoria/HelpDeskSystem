@@ -1,0 +1,7 @@
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\bin\Debug\CapaLogica_HelpDesk.dll
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\bin\Debug\CapaLogica_HelpDesk.pdb
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\bin\Debug\AccesoADatos.dll
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\bin\Debug\AccesoADatos.pdb
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\obj\Debug\CapaLogica_HelpDesk.csprojResolveAssemblyReference.cache
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\obj\Debug\CapaLogica_HelpDesk.dll
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\CapaLogica_HelpDesk\obj\Debug\CapaLogica_HelpDesk.pdb

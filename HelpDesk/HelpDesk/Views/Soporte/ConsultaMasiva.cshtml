@@ -1,0 +1,154 @@
+﻿@model List<CapaLogica_HelpDesk.Soporte>
+@{
+    ViewBag.Title = "Dashboard";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("ConsultaMasiva", "Soporte", FormMethod.Get))
+{     
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-7">
+                    <h3>Menu Principal - Consultas Masivas</h3>
+                    <div>
+                        <label>Buscar por Ticket</label>
+                        <input type="text" id="IdSoporte" name="IdSoporte" class="form-control" />
+                    </div>
+                    <label>Buscar Solicitudes por fecha</label>
+                    @Html.TextBox("FechaRegistro", null, new { @class = "form-control datepicker" })
+                    <div>
+                        <label>Por tipo de Solicitud</label>
+                        @Html.DropDownList("IdTipoSolicitud", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Estado</label>
+                        @Html.DropDownList("IdEstado", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Departamento</label>
+                        @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Prioridad</label>
+                        @Html.DropDownList("IdSeveridad", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input type="submit" id="buscar" value="Buscar" class="btn btn-success" />
+                        @Html.ActionLink("Limpiar", "ConsultaMasiva", null, new { @class = "btn btn-default" })
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        @* <table class="table table-bordered table-hover" style="width: 100%">*@
+                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+
+                            <tr>
+                                <th style="background-color: #333; color: white; border-radius: 2px; height: 8px;">Ticket</th>
+                                <th style="width: 20px; background-color: #333; color: white; border-radius: 2px;">Usuario</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Problema</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Departamento</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Tipo</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Estado</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Prioridad</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Fecha</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Asignar A:</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Opción</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Detalle</th>
+
+                            </tr>
+                            @*              @if (Model != null && Model.Count >= 1)
+                                        {
+                                            <div style="margin-top: 10px;">Mostrando: @Model.Count Registros  de @Model[0].TotalRow</div>              
+                                        }<br />*@
+
+
+                               @*.Where(p => p.IdEstado == 1)*@
+                            @foreach (CapaLogica_HelpDesk.Soporte p in Model.Where(p => p.IdEstado == 1))
+                            {
+                                <tr>
+                                    <td>@p.IdSoporte</td>
+                                    <td>@p.Usuario</td>
+                                    <td>@p.DescripcionProblema</td>
+                                    <td>@p.Departamento</td>
+                                    <td>@p.TipoSolicitud</td>
+                                    <td><b style="font-size:15px; color:#5cb85c;">@p.Estado</b></td>
+                                    <td>@p.Severidad</td>
+                                    <td>@string.Format("{0:dd-MM-yyyy}", p.FechaRegistro)</td>
+
+                                    <td>
+                                    @Html.DropDownList("IdTipoUsuario", null, "SELECCIONE", new { @class = "" })
+                                    <td>
+                                        <input type="button" value="Asignar" class="form-control btn btn-warning" onclick="Asignar(@p.IdSoporte)" /><br />
+                                        <br />
+                                        <span>
+                                            @Html.ActionLink("Eliminar", "EliminarSoporte", new { id = p.IdSoporte },
+                                                new { onclick = "return confirm('Estas seguro de eliminar este Soporte?')", @class = "btn btn-danger" })
+                                        </span>
+
+                                    </td>
+                                    <td><span>
+                                        @Html.ActionLink("Ver", "DetalleSoporte", new { id = p.IdSoporte },
+                                                new { @class = "" })
+                                    </span></td>
+                                </tr>
+                                <td>
+                                @if (Model.Count == 0)
+                                {
+                                     <text>No Hay registro que mostrar</text>
+                                }
+                    </td>
+                          
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>
+
+    
+}
+@section scripts{
+<script>
+    
+
+    function Asignar(idsoporte) {
+        var idtecnico = $("#IdTipoUsuario").val();      
+        $.getJSON("@Url.Action("Asignar")",{idticket:idsoporte,idtecnico:idtecnico},function(datos) {
+            if (datos) {
+       
+                window.open("@Url.Action("ConsultaMasiva")","_self");
+            }
+        });
+        
+    }
+</script>
+    }

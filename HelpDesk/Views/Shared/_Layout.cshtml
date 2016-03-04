@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.datepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+@*    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+   <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="~/Usuarios/Index">Help Desk System</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+           
+            <ul class="nav navbar-nav navbar-right">
+              @*<li class="active"><a href="#">Soportes <span class="sr-only">(current)</span></a></li>*@
+                 <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Soporte <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Novedades</a></li>
+                  <li><a href="#">Seguimiento de Solicitudes</a></li>
+                  <li><a href="#">Cerradas</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Consulta</li>
+                  <li><a href="#">Lista de Soportes</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                  <li><a href="#">Lista de Usuarios</a></li>
+                  <li><a href="#">Nuevo Usuario</a></li>
+                </ul>
+              </li>   
+                <li class="dropdown">
+                  <a href="#" class="class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                  <li><a href="Account/logout">Salir del Sistema</a></li>
+                </ul>
+              </li>         
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+     <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Help Desk System
+                    </a>
+                </li>
+                <li>
+                    <a href="~/Soporte/ConsultaMasiva">Dashboard</a>
+                </li>
+                <li>
+                    <a href="~/Soporte/RegistroSoporte">Nueva Solicitud</a>
+                </li>
+                <li>
+                    <a href="#">Solicitudes</a>
+                </li>
+                <li>
+                    <a href="~#">Soluciones</a>
+                </li>
+
+                <li>
+                    <a href="~/Usuarios/NuevoUsuario">Registrar Usuarios</a>
+                </li>
+                <li>
+                    <a href="#">Informes</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- /#sidebar-wrapper -->
+
+
+        <!-- Page Content -->
+        
+        <div id="page-content-wrapper" style="margin-top:4%">
+            <div class="container-fluid">
+                <div class="col-md-8">
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Expandir Menu</a>
+                    </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+          
+    </div>
+    @RenderBody()
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.js"></script>
+    
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        $(".datepicker").datepicker({ dateFormat: "dd-mm-yy", changeYear: true, changeMonth: true, minYear: 1950, yearRange: "1920:2020" });
+        //Tipo de formato para la fecha de Nacimiento.
+
+        function getFormattedDate(date) {
+            var year = date.getFullYear();
+            var month = (1 + date.getMonth()).toString();
+            month = month.length > 1 ? month : '0' + month;
+            var day = date.getDate().toString();
+            day = day.length > 1 ? day : '0' + day;
+            return day + '-' + month + '-' + year;
+        }
+
+
+        //funcion para poner el datepicker en español
+        $(function ($) {
+            $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<Ant',
+                nextText: 'Sig>',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd-mm-yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+        });
+    </script>
+
+@*    @Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

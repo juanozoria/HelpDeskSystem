@@ -1,0 +1,106 @@
+﻿@model CapaLogica_HelpDesk.Soporte
+@{
+    ViewBag.Title = "DetalleSoporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+@using (Html.BeginForm("RegistroSoporte", "Soporte", FormMethod.Get))
+{ 
+    <div class="container-fluid" style="margin-left: 20%;">
+
+        <div class="col-md-8"></div>
+        <h2>Ticket #@Model.IdSoporte</h2>
+        <div class="row">
+            <form role="form">
+                <div class="col-lg-6">
+                    <table class="table borderless">
+                        <tr>
+
+                            <div class="form-group">
+                                <label>Descripción Problema</label>
+                                
+                                <div class="input-group">
+                                    <textarea id="DescripcionProblema" name="DescripcionProblema" class="form-control" placeholder="Descripción del problema" maxlength="200" disabled="disabled">@Model.DescripcionProblema</textarea>
+                                    <span class="input-group-addon"></span>
+
+                                </div>
+                            </div>
+
+                            <td>
+                                <div class="form-group">
+                                    <label>Fecha</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" id="FechaRegistro" name="FechaRegistro"  disabled="disabled" value="@Model.FechaRegistro.ToString("dd-MM-yyyy")" />
+                                        <span class="input-group-addon"></span>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <div class="form-group">
+                                <label>Documento o Imagen</label>
+                                <div class="input-group">
+                                   @* <input type="image" disabled="disabled" value="@Model.imagepath" class="form-control" />*@
+                                    <a target="_blank" href="~/images/@Model.imagepath"><img src="~/images/@Model.imagepath" style="width:100px; height:100px;" /></a>
+                                </div>
+                            </div>
+                            <td>
+                                <div class="form-group">
+                                    <label>Departamento que perteneces</label>
+                                    <div class="input-group">
+                                        
+                                        <input type="text" id="Departamento" value="@Model.Departamento" class="form-control" disabled="disabled" />
+                                        <span class="input-group-addon"></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <div class="form-group">
+                            <label>Prioridad</label>
+                            <div class="input-group">
+                                
+                                <input type="text" id="severidad" class="form-control" disabled="disabled" value="@Model.Severidad" />
+                                <span class="input-group-addon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <div class="input-group">
+                               
+                                <input type="text" id="Estado" class="form-control" disabled="disabled" value="@Model.Estado" style="color:#f0ad4e;" />
+                               <span class="input-group-addon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Problema</label>
+                            <div class="input-group">
+                              
+                                <input type="text" id="Problema" class="form-control" disabled="disabled" value="@Model.Problema" />
+                                <span class="input-group-addon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo Solicitud</label>
+                            <div class="input-group">
+                              
+                                <input type="text" id="TipoSolicitud" class="form-control" disabled="disabled" value="@Model.TipoSolicitud" />
+                                <span class="input-group-addon"></span>
+                            </div>
+                        </div>
+
+                    </table>
+            <div class="row margen">
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+              <a href="@Url.Action("ModificarSolicitud/", new {id = this.Model.IdSoporte})" class="btn btn-danger btn-lg" style="text-decoration:none;color:white">Editar</a>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery.js"></script>

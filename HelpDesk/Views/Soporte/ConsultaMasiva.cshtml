@@ -1,0 +1,140 @@
+﻿@model List<CapaLogica_HelpDesk.Soporte>
+@{
+    ViewBag.Title = "Dashboard";
+
+    int pag = 1;
+    int ps = 20;
+
+    if (ViewBag.Page != null)
+    {
+        pag = ViewBag.Page;
+        ps = ViewBag.PageSize;
+
+    }
+    int? ultimaPag = ViewBag.ult; 
+}
+@using (Html.BeginForm("ConsultaMasiva", "Soporte", FormMethod.Get))
+{     
+    <input type="hidden" value="@pag" id="page" name="page" />
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-7">
+                    <h3>Menu Principal - Consultas Masivas</h3>
+                    <label>Buscar Solicitudes por fecha</label>
+                    <input type="text" id="textUsuario" class="form-control datepicker" />
+                    <div>
+                        <label>Por tipo de Solicitud</label>
+                        @Html.DropDownList("IdTipoSolicitud", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Estado</label>
+                        @Html.DropDownList("IdEstado", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Departamento</label>
+                        @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Prioridad</label>
+                        @Html.DropDownList("IdSeveridad", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input type="submit" id="buscar" value="Buscar" class="btn btn-danger" />
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        <table class="table table-bordered" style="width: 100%">
+
+
+                            <tr>
+                                <th style="background-color: #333; color: white; border-radius: 2px; height: 8px;">Ticket ID</th>
+                                <th style="width: 20px; background-color: #333; color: white; border-radius: 2px;">IdUsuario</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Descripcion Problema</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Departamento</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Estado</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Prioridad</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Fecha Registro</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Opción</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Asignar a</th>
+                            </tr>
+
+                            @foreach (CapaLogica_HelpDesk.Soporte p in Model)
+                            {
+                                <tr>
+                                    <td>@p.IdSoporte</td>
+                                    <td>@p.IdUsuario</td>
+                                    <td>@p.DescripcionProblema</td>
+                                    <td>@p.Departamento</td>
+                                    <td>@p.Estado</td>
+                                    <td>@p.Severidad</td>
+                                    <td>@string.Format("{0:dd-MM-yyyy}", p.FechaRegistro)</td>
+                                    <td>
+                                        @Html.ActionLink("Ver", "DetalleSoporte", new { id = p.IdSoporte })
+                                    </td>
+                                    <td>
+                                        <select>
+                                            <option value="">Seleccione</option>
+                                            <option value="1">Juan Carlos</option>
+                                            <option value="2">Jose Ricardo</option>
+                                            <option value="3">Ariel Batista</option>
+                                            <option value="4">Yared Rosario</option>
+                                        </select></td>
+                                </tr>
+                    
+                          
+                            }
+
+                        </table>
+                        <div>
+                            <nav>
+                                <ul class="pager">
+                                    @if (pag > 1)
+                                    {
+                                        <li>
+                                            <a href="@(Url.Action("ConsultaMasiva") + "?page=" + (pag - 1) + "&" + ViewBag.QueryString)">« Anterior</a>
+                                        </li>
+                                    }
+
+                                    Pagina:@pag
+                                    @if (pag < ultimaPag)
+                                    {
+                                        <li>
+                                            <a href="@(Url.Action("ConsultaMasiva") + "?page=" + (pag + 1) + "&" + ViewBag.QueryString)">Siguiente »</a>
+                                        </li>  
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>
+}

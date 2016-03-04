@@ -1,0 +1,4 @@
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\AccesoADatos\bin\Debug\AccesoADatos.dll
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\AccesoADatos\bin\Debug\AccesoADatos.pdb
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\AccesoADatos\obj\Debug\AccesoADatos.dll
+C:\Users\jozoria\Documents\Visual Studio 2012\Projects\HelpDesk\AccesoADatos\obj\Debug\AccesoADatos.pdb

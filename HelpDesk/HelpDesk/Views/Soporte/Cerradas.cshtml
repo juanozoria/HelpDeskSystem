@@ -1,0 +1,118 @@
+﻿@model List<CapaLogica_HelpDesk.Soporte>
+@{
+    ViewBag.Title = "Cerradas";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Cerradas", "Soporte", FormMethod.Get))
+{     
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+         <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-7">
+                    <h3>Solicitudes de Ticket Cerradas</h3>
+                    <div>
+                        <label>Buscar por Ticket</label>
+                        <input type="text" id="IdSoporte" name="IdSoporte" class="form-control" />
+                    </div>
+                    <label>Buscar Solicitudes por fecha</label>
+                    @Html.TextBox("FechaRegistro", null, new { @class = "form-control datepicker" })
+                    <div>
+                        <label>Por tipo de Solicitud</label>
+                        @Html.DropDownList("IdTipoSolicitud", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Estado</label>
+                        @Html.DropDownList("IdEstado", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Departamento</label>
+                        @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div>
+                        <label>Por Prioridad</label>
+                        @Html.DropDownList("IdSeveridad", null, "SELECCIONE", new { @class = "form-control Requerido" })
+
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input type="submit" id="buscar" value="Buscar" class="btn btn-success" />
+                        @Html.ActionLink("Limpiar", "ConsultaMasiva", null, new { @class = "btn btn-default" })
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        @* <table class="table table-bordered table-hover" style="width: 100%">*@
+                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+
+                            <tr>
+                                <th style="background-color: #333; color: white; border-radius: 2px; height: 8px;">Ticket</th>
+                                <th style="width: 20px; background-color: #333; color: white; border-radius: 2px;">Usuario</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Problema</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Departamento</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Tipo</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Estado</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Prioridad</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Fecha</th>
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Cerrada por: </th>                              
+                                <th style="background-color: #333; color: white; border-radius: 2px;">Detalle</th>
+                                 
+
+                            </tr>
+
+                            @foreach (CapaLogica_HelpDesk.Soporte p in Model.Where(p => p.IdEstado == 3))
+                            {
+                                <tr>
+                                    <td>@p.IdSoporte</td>
+                                    <td>@p.Usuario</td>
+                                    <td>@p.DescripcionProblema</td>
+                                    <td>@p.Departamento</td>
+                                    <td>@p.TipoSolicitud</td>
+                                    <td><b style="font-size:15px; color:red">@p.Estado</b></td>
+                                    <td>@p.Severidad</td>
+                                    <td>@string.Format("{0:dd-MM-yyyy}", p.FechaRegistro)</td>
+                                    <td>@p.Cerrador</td>
+                                    <td><span>
+                                        @Html.ActionLink("Ver", "DetalleSoporte", new { id = p.IdSoporte },
+                                                new { @class = "" })
+                                    </span></td>
+                                </tr>
+                    
+                          
+                            }
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>
+
+    
+}
+@section scripts{
+    }
