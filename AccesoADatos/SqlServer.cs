@@ -27,7 +27,7 @@ namespace AccesoADatos
             }
             else
             {
-                conexion = new SqlConnection("Data Source=dbameta;Initial Catalog=HelpDeskDB;Integrated Security=False;User ID=dba;Password=Admin123;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
+                conexion = new SqlConnection("AQUI VA LA CONEXION");
             }
         }
 
