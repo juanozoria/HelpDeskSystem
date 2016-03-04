@@ -21,6 +21,7 @@ namespace HelpDesk
 
         public static void MostrarError(Controller C, Exception E)
         {
+            C.TempData.Clear();
             C.TempData.Add("Error", E.Message);
 
         }

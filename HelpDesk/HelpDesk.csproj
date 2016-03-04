@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SoporteController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="EstaPermitido.cs" />
@@ -250,6 +251,7 @@
     <Content Include="font-awesome\scss\_stacked.scss" />
     <Content Include="font-awesome\scss\_variables.scss" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="images\nofoto.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -285,6 +287,10 @@
     <Content Include="Views\Usuarios\NuevoUsuario.cshtml" />
     <Content Include="Views\Soporte\ConsultaMasiva.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Soporte\DetalleSoporte.cshtml" />
+    <Content Include="Views\Soporte\ModificarSolicitud.cshtml" />
+    <Content Include="Views\Soporte\SolicitudesResolver.cshtml" />
+    <Content Include="Views\Soporte\Cerradas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,9 +323,9 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>17431</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:47377/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

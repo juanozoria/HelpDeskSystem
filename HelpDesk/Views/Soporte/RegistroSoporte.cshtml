@@ -3,10 +3,10 @@
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
-@using (Html.BeginForm("RegistroSoporte", "Soporte", FormMethod.Post))
+@using (Html.BeginForm("RegistroSoporte", "Soporte", FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 
     <div class="container-fluid" style="margin-left: 20%;">
-        
+
         <div class="col-md-8"></div>
         <h2>Registro de Solicitud de Soporte</h2>
         <div class="row">
@@ -16,49 +16,39 @@
                     <table class="table borderless">
                         <tr>
                             <div class="form-group">
-                                <label>IdUsuario</label>
-                                <div class="input-group">
-                                    <div>@User.Identity.Name</div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label>Descripción Problema</label>
                                 <div class="input-group">
                                     <textarea id="DescripcionProblema" name="DescripcionProblema" class="form-control" placeholder="Descripción del problema" maxlength="200"></textarea>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk Requerido" style="color: red;"></span></span>
                                 </div>
                             </div>
-                            
+
                             <td>
                                 <div class="form-group">
                                     <label>Fecha</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" id="FechaRegistro" name="FechaRegistro" placeholder="Fecha del Registro" value="@string.Format("{0:dd-MM-yyyy}",DateTime.Now)" required>
+                                        <input type="text" class="form-control datepicker" id="FechaRegistro" name="FechaRegistro" placeholder="Fecha del Registro" value="@string.Format("{0:dd-MM-yyyy}", DateTime.Now)" required>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
                                     </div>
                                 </div>
                             </td>
-                            <div class="form-group">
-                                <label>Anexar Documento o Imagen</label>
-                                <div class="input-group">
-                                    <input type="file" id="fileUpload" name="fileUpload" class="form-control" />
+                                <div class="form-group">
+                                    <label>Anexar Documento o Imagen</label>
+                                    <div class="input-group">
+                                        <input type="file" id="file" name="file" class="form-control" />
+                                       
+                                    </div>
                                 </div>
-                            </div>
-                            @*<div class="form-group">
-                    <label>IdUsuario</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="IdUsuario" name="IdUsuario" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color:red;"></span></span>
-                    </div>
-                </div>*@<td>
-                    <div class="form-group">
-                        <label>Departamento</label>
-                        <div class="input-group">
-                            @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
-                        </div>
-                    </div>
-                </td>
+                            
+                            <td>
+                                <div class="form-group">
+                                    <label>Departamento que perteneces</label>
+                                    <div class="input-group">
+                                        @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <div class="form-group">
                             <label>Prioridad</label>
@@ -67,17 +57,17 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label>Estado</label>
                             <div class="input-group">
-                                @Html.DropDownList("IdEstado", null, "SELECCIONE", new { @class = "form-control", @disabled="disabled" })
+                                @Html.DropDownList("IdEstado", null, "SELECCIONE", new { @class = "form-control", @disabled = "disabled" })
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="form-group">
                             <label>Tipo de Problema</label>
                             <div class="input-group">
-                                @Html.DropDownList("IdProblem", null, "SELECCIONE", new { @class = "form-control Requerido"  })
+                                @Html.DropDownList("IdProblem", null, "SELECCIONE", new { @class = "form-control Requerido" })
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color: red;"></span></span>
                             </div>
                         </div>
@@ -90,7 +80,14 @@
                         </div>
 
                     </table>
-                    <input type="button" value="Guardar" onclick="Sumit()" class="btn btn-info pull-right">
+
+                    <div class="row margen">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-1">
+                            <input type="button" value="Guardar" onclick="Sumit()" class="btn btn-info pull-right">
+                        </div>
+                        <div class="col-md-5"></div>
+                    </div>
                 </div>
             </form>
         </div>

@@ -10,6 +10,7 @@ namespace HelpDesk.Controllers
 {
     public class AccountController : Controller
     {
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -23,16 +24,23 @@ namespace HelpDesk.Controllers
         {
             try
             {
-                user = new Usuarios();
-                user.Login(NombreUsuario,Contrasena);
-                FormsAuthentication.SetAuthCookie(user.IdUsuario.ToString(), false);
+                user = Usuarios.Login(NombreUsuario, Contrasena);
+     
+                FormsAuthentication.SetAuthCookie(user.IdUsuario.ToString(), false);                
             }
             catch (Exception ex)
             {
                 Funciones.MostrarError(this, ex);
                 return View(user);
             }
-            return  RedirectToAction("ConsultaMasiva", "Soporte");
+            if (user.IdTipoUsuario == 3)
+            {
+                return RedirectToAction("ConsultaMasiva", "Soporte");
+            }
+            else
+            {
+                return RedirectToAction("RegistroSoporte", "Soporte");
+            }
         }
 
 

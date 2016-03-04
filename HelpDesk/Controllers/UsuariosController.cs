@@ -13,7 +13,7 @@ namespace HelpDesk.Controllers
         [HttpPost]
         public ActionResult NuevoUsuario(Usuarios user)
         {
-            ViewData["DepartmentId"] = new SelectList(CapaLogica_HelpDesk.Departamentos.ListDeparments(), "IdDeparment", "Departamento");
+            ViewData["DepartamentId"] = new SelectList(CapaLogica_HelpDesk.Departamentos.ListDeparments(), "IdDeparment", "Departamento");
             ViewData["IdTipoUsuario"] = new SelectList(CapaLogica_HelpDesk.TipodeUsuario.ListTipoUsuarios(),"IdTipoUsuario","TipoUsuario");
 
 
@@ -35,7 +35,7 @@ namespace HelpDesk.Controllers
         [HttpGet]
         public ActionResult NuevoUsuario()
         {
-            ViewData["DepartmentId"] = new SelectList(CapaLogica_HelpDesk.Departamentos.ListDeparments(), "IdDeparment", "Departamento");
+            ViewData["DepartamentId"] = new SelectList(CapaLogica_HelpDesk.Departamentos.ListDeparments(), "IdDeparment", "Departamento");
             ViewData["IdTipoUsuario"] = new SelectList(CapaLogica_HelpDesk.TipodeUsuario.ListTipoUsuarios(), "IdTipoUsuario", "TipoUsuario");
 
             Usuarios user = new Usuarios();

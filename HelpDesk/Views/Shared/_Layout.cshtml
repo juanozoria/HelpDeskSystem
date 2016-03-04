@@ -26,29 +26,10 @@
           <div id="navbar" class="navbar-collapse collapse">
            
             <ul class="nav navbar-nav navbar-right">
-              @*<li class="active"><a href="#">Soportes <span class="sr-only">(current)</span></a></li>*@
-                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Soporte <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Novedades</a></li>
-                  <li><a href="#">Seguimiento de Solicitudes</a></li>
-                  <li><a href="#">Cerradas</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Consulta</li>
-                  <li><a href="#">Lista de Soportes</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                  <a href="#" class="class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                  <li><a href="#">Lista de Usuarios</a></li>
-                  <li><a href="#">Nuevo Usuario</a></li>
-                </ul>
-              </li>   
-                <li class="dropdown">
+                <li class="dropdown">                   
                   <a href="#" class="class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                  <li><a href="Account/logout">Salir del Sistema</a></li>
+                  <li><a href="@Url.Action("Logout", "Account")">Salir del Sistema</a></li>
                 </ul>
               </li>         
             </ul>
@@ -60,29 +41,44 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Help Desk System
-                    </a>
+
                 </li>
-                <li>
-                    <a href="~/Soporte/ConsultaMasiva">Dashboard</a>
-                </li>
-                <li>
+                 <li>
                     <a href="~/Soporte/RegistroSoporte">Nueva Solicitud</a>
                 </li>
+                @{
+                    var idtipouser = CapaLogica_HelpDesk.Usuarios.GetOne(int.Parse(User.Identity.Name)).IdTipoUsuario;
+                    }
+                @if(idtipouser == 3)
+                {
                 <li>
-                    <a href="#">Solicitudes</a>
+                    <a href="~/Soporte/ConsultaMasiva">Dashboard</a>     
+                </li>
+                }
+                @if (idtipouser == 2 || idtipouser == 3)
+                {
+                <li>
+                    <a href="~/Soporte/SolicitudesResolver">Solicitudes a Resolver</a>
                 </li>
                 <li>
-                    <a href="~#">Soluciones</a>
+                    <a href="~/Soporte/Cerradas">Cerradas</a>
                 </li>
 
                 <li>
                     <a href="~/Usuarios/NuevoUsuario">Registrar Usuarios</a>
                 </li>
-                <li>
+                    if (idtipouser == 3)//solo si es admin puede ver los informes.
+                    {
+                  <li>
                     <a href="#">Informes</a>
                 </li>
+                    }
+
+                }
+                else
+                {
+
+                }
             </ul>
         </div>
         

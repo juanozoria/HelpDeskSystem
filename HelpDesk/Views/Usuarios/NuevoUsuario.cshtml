@@ -1,8 +1,12 @@
 ﻿@{
     ViewBag.Title = "RegistroUsuario";
+      var idtipouser = CapaLogica_HelpDesk.Usuarios.GetOne(int.Parse(User.Identity.Name)).IdTipoUsuario;
+    if(idtipouser == 1) //Si es un Usuario normal solo podra Generar nuevos soportes, no tendra acceso al layout.
+    {               
     Layout = null;
+    }
 }
-@using(Html.BeginForm("NuevoUsuario","Usuarios",FormMethod.Post))
+@using (Html.BeginForm("NuevoUsuario", "Usuarios", FormMethod.Post))
 {
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
@@ -59,9 +63,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Departamento que Pertenece</label>
+                    <label>Departamento que Perteneces</label>
                     <div class="input-group">
-                         @Html.DropDownList("DepartmentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
+                         @Html.DropDownList("DepartamentId", null, "SELECCIONE", new { @class = "form-control Requerido" })
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" style="color:red;"></span></span>
                     </div>
                 </div>
