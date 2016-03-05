@@ -1,9 +1,8 @@
+--CREANDO LA BASE DE DATOS
+CREATE DATABASE HelpDeskDB
 ﻿USE [HelpDeskDB]
 GO
 /****** Object:  Table [dbo].[Problemas]    Script Date: 03/04/2016 16:33:22 ******/
-
-
-
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
