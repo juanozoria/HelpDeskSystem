@@ -17,6 +17,7 @@ PROCESOS:
 * El sistema Crea Regista Usuarios.
 * Inserta Soportes(ticket)
 * Modifica(ticket)
+* Asigna Ticket
 * Consulta Lista de (soportes)Tickets por ID, FECHA,Tipo, Estado, Prioridad.
 * Consultalos (soportes)Tickets asignados por ID, FECHA,Tipo, Estado, Prioridad.
 * Consulta los (soportes)Tickets Cerrados por ID, FECHA,Tipo, Estado, Prioridad.
@@ -28,3 +29,4 @@ en el script ese usuario tiene privilegios de administrador y puede ver el siste
 * Usuario con ID = 2 es un IT Soporte
 * Usuario con ID = 3 es un Admin
 
+-- Version 1.0
