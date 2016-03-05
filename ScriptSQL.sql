@@ -298,7 +298,7 @@ CREATE PROCEDURE [dbo].[UpdateUsuario]
 AS 
 	UPDATE dbo.RegistroUsuario
 	SET NombreUsuario=@NombreUsuario,PrimerNombre=@PrimerNombre,SegundoNombre=@SegundoNombre,
-	Contrasena=@Contrasena,Email=@Email,DepartmentId=@DepartmentId
+	Contrasena=@Contrasena,Email=@Email,DepartamentId=@DepartmentId
 	WHERE Id=@IdUsuario
 GO
 /****** Object:  StoredProcedure [dbo].[UpdateSoporte]    Script Date: 03/04/2016 16:33:22 ******/
