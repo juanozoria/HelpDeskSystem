@@ -4,6 +4,7 @@ Sistema de HelpDesk creado en ASP.NET MVC 4
 
 Tecnologías:
 - MVC
+- ADO.NET
 - Boostratp
 - JavaScript
 - Jquery
