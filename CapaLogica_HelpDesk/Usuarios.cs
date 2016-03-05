@@ -22,14 +22,14 @@ namespace CapaLogica_HelpDesk
         public string Contrasena { get; set; }
         public string Email { get; set; }
          [Required(ErrorMessage = "Debe seleccionar un departamento", AllowEmptyStrings = false)]
-        public int DeparmentId { get; set; }
+        public int DepartamentId { get; set; }
 
          public static List<Usuarios> ListUsuarios()
         {
             List<Usuarios> listusers = new List<Usuarios>();
             Usuarios user;
             SqlServer db = new SqlServer();
-            SqlCommand Comando = new SqlCommand("GetUsuarios");
+            SqlCommand Comando = new SqlCommand("[GetTecnicos]");
             DataTable dt = db.get_tabla(Comando);
 
             if (dt.Rows.Count == 0)
@@ -40,11 +40,12 @@ namespace CapaLogica_HelpDesk
             foreach (DataRow f in dt.Rows)
             {
                 user = new Usuarios();
-                user.IdUsuario = int.Parse(f["IdUsuario"].ToString());
+                user.IdUsuario = int.Parse(f["Id"].ToString());
+                user.IdTipoUsuario = int.Parse(f["IdTipoUsuario"].ToString());
                 user.NombreUsuario = f["NombreUsuario"].ToString();
                 user.PrimerNombre = f["PrimerNombre"].ToString();
                 user.Email = f["Email"].ToString();
-                user.DeparmentId = int.Parse(f["DepartamentId"].ToString());
+                user.DepartamentId = int.Parse(f["DepartamentId"].ToString());
 
                 listusers.Add(user);
             }
@@ -61,7 +62,7 @@ namespace CapaLogica_HelpDesk
             cmd.Parameters.AddWithValue("@SegundoNombre", SegundoNombre);
             cmd.Parameters.AddWithValue("@Email",Email);
             cmd.Parameters.AddWithValue("@Contrasena", Contrasena);
-            cmd.Parameters.AddWithValue("@DepartmentId", DeparmentId);
+            cmd.Parameters.AddWithValue("@DepartmentId", DepartamentId);
 
             SqlParameter OutputParam = new SqlParameter();
             OutputParam.ParameterName = "@NewId";
@@ -80,21 +81,51 @@ namespace CapaLogica_HelpDesk
             cmd.Parameters.AddWithValue("@NombreUsuario", NombreUsuario);
             cmd.Parameters.AddWithValue("@PrimerNombre", PrimerNombre);
             cmd.Parameters.AddWithValue("@SegundoNombre", SegundoNombre);
-            cmd.Parameters.AddWithValue("@DepartmentId", DeparmentId);
+            cmd.Parameters.AddWithValue("@DepartmentId", DepartamentId);
 
             SqlServer db = new SqlServer();
             db.ejecutar_Sp(cmd);
         }
 
-        public void Login(string username, string pass)
+        public static Usuarios GetOne(int id)
         {
+
+            SqlServer db = new SqlServer();
+            SqlCommand cmd = new SqlCommand("GetOneUsuario");
+            cmd.Parameters.AddWithValue("@id", id);
+            DataTable dt = db.get_tabla(cmd);
+
+            DataRow f = dt.Rows[0];
+            Usuarios usuario = new Usuarios();
+            usuario.IdUsuario = int.Parse(f["Id"].ToString());
+            usuario.IdTipoUsuario = int.Parse(f["IdTipoUsuario"].ToString());
+            usuario.NombreUsuario = f["NombreUsuario"].ToString();
+
+
+            return usuario;
+        }
+
+        public static Usuarios Login(string username, string pass)
+        {
+         
             SqlServer db = new SqlServer();
             SqlCommand cmd = new SqlCommand("LoginUser");
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@pass", pass);
-            db.ejecutar_Sp(cmd);
+            DataTable dt = db.get_tabla(cmd);
+            if (dt.Rows.Count == 0)
+            {
+                throw new Exception("Consulta sin resultados");
+            }
+
+            DataRow f = dt.Rows[0];
+            Usuarios usuario = new Usuarios();
+            usuario.IdUsuario = int.Parse(f["Id"].ToString());
+            usuario.IdTipoUsuario = int.Parse(f["IdTipoUsuario"].ToString());
+            usuario.NombreUsuario = f["NombreUsuario"].ToString();
 
 
+            return usuario;
         }
 
 
