@@ -301,26 +301,7 @@ namespace HelpDesk.Controllers
             return RedirectToAction("ConsultaMasiva");
         }
 
-        public ActionResult ReporteCerradas()
-        {
-            using (HelpDeskDBEntities dc = new HelpDeskDBEntities())
-            {
-                var v = dc.RegistroSoporte.Where(x => x.IdSoporte == x.IdUsuario).ToList();
 
-                return View(v);
-            }
-        }
-
-        public ActionResult report()
-        {
-            //LocalReport Lr = new LocalReport();
-            //Lr.ReportPath = System.AppDomain.CurrentDomain.BaseDirectory + @"Reportes\SoportesReport1.rdlc";
-
-            //return View(Lr);
-
-            return View();
-
-        }
 
     }
 }
