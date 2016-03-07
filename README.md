@@ -14,7 +14,7 @@ Base de Datos:
 
 PROCESOS:
 * Login de Usuario
-* El sistema Crea Regista Usuarios.
+* El sistema Regista Usuarios.
 * Inserta Soportes(ticket)
 * Modifica(ticket)
 * Asigna Ticket
