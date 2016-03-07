@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HelpDeskDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="HelpDeskDBModelStoreContainer">
+          <EntitySet Name="Departamentos" EntityType="HelpDeskDBModel.Store.Departamentos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estado" EntityType="HelpDeskDBModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Problemas" EntityType="HelpDeskDBModel.Store.Problemas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegistroSoporte" EntityType="HelpDeskDBModel.Store.RegistroSoporte" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegistroUsuario" EntityType="HelpDeskDBModel.Store.RegistroUsuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Severidad" EntityType="HelpDeskDBModel.Store.Severidad" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="HelpDeskDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoSolicitud" EntityType="HelpDeskDBModel.Store.TipoSolicitud" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoUser" EntityType="HelpDeskDBModel.Store.TipoUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_RegistroSoporte_Departamentos1" Association="HelpDeskDBModel.Store.FK_RegistroSoporte_Departamentos1">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Estado" Association="HelpDeskDBModel.Store.FK_RegistroSoporte_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Problemas" Association="HelpDeskDBModel.Store.FK_RegistroSoporte_Problemas">
+            <End Role="Problemas" EntitySet="Problemas" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Severidad" Association="HelpDeskDBModel.Store.FK_RegistroSoporte_Severidad">
+            <End Role="Severidad" EntitySet="Severidad" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_TipoSolicitud" Association="HelpDeskDBModel.Store.FK_RegistroSoporte_TipoSolicitud">
+            <End Role="TipoSolicitud" EntitySet="TipoSolicitud" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="IdDepartment" />
+          </Key>
+          <Property Name="IdDepartment" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Departamento" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Problemas">
+          <Key>
+            <PropertyRef Name="IdProblema" />
+          </Key>
+          <Property Name="IdProblema" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RegistroSoporte">
+          <Key>
+            <PropertyRef Name="IdSoporte" />
+          </Key>
+          <Property Name="IdSoporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="DescripcionProblema" Type="varchar" MaxLength="100" />
+          <Property Name="DepartamentId" Type="int" />
+          <Property Name="IdProblem" Type="int" />
+          <Property Name="IdTipoSolicitud" Type="int" />
+          <Property Name="IdEstado" Type="int" />
+          <Property Name="IdSeveridad" Type="int" />
+          <Property Name="IdTecnico" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="AsignadoPor" Type="int" />
+          <Property Name="CerradoPor" Type="int" />
+        </EntityType>
+        <EntityType Name="RegistroUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoUsuario" Type="int" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="PrimerNombre" Type="varchar" MaxLength="50" />
+          <Property Name="SegundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="DepartamentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Severidad">
+          <Key>
+            <PropertyRef Name="IdSeveridad" />
+          </Key>
+          <Property Name="IdSeveridad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Severidad" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoSolicitud">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TipoSolicitud" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TipoUser">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TipoUsuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_RegistroSoporte_Departamentos1">
+          <End Role="Departamentos" Type="HelpDeskDBModel.Store.Departamentos" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.Store.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="IdDepartment" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="DepartamentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Estado">
+          <End Role="Estado" Type="HelpDeskDBModel.Store.Estado" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.Store.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Problemas">
+          <End Role="Problemas" Type="HelpDeskDBModel.Store.Problemas" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.Store.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problemas">
+              <PropertyRef Name="IdProblema" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdProblem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Severidad">
+          <End Role="Severidad" Type="HelpDeskDBModel.Store.Severidad" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.Store.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Severidad">
+              <PropertyRef Name="IdSeveridad" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdSeveridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_TipoSolicitud">
+          <End Role="TipoSolicitud" Type="HelpDeskDBModel.Store.TipoSolicitud" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.Store.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSolicitud">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdTipoSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HelpDeskDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="HelpDeskDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departamentos" EntityType="HelpDeskDBModel.Departamentos" />
+          <EntitySet Name="Estado" EntityType="HelpDeskDBModel.Estado" />
+          <EntitySet Name="Problemas" EntityType="HelpDeskDBModel.Problemas" />
+          <EntitySet Name="RegistroSoporte" EntityType="HelpDeskDBModel.RegistroSoporte" />
+          <EntitySet Name="RegistroUsuario" EntityType="HelpDeskDBModel.RegistroUsuario" />
+          <EntitySet Name="Severidad" EntityType="HelpDeskDBModel.Severidad" />
+          <EntitySet Name="sysdiagrams" EntityType="HelpDeskDBModel.sysdiagrams" />
+          <EntitySet Name="TipoSolicitud" EntityType="HelpDeskDBModel.TipoSolicitud" />
+          <EntitySet Name="TipoUser" EntityType="HelpDeskDBModel.TipoUser" />
+          <AssociationSet Name="FK_RegistroSoporte_Departamentos1" Association="HelpDeskDBModel.FK_RegistroSoporte_Departamentos1">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Estado" Association="HelpDeskDBModel.FK_RegistroSoporte_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Problemas" Association="HelpDeskDBModel.FK_RegistroSoporte_Problemas">
+            <End Role="Problemas" EntitySet="Problemas" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_Severidad" Association="HelpDeskDBModel.FK_RegistroSoporte_Severidad">
+            <End Role="Severidad" EntitySet="Severidad" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroSoporte_TipoSolicitud" Association="HelpDeskDBModel.FK_RegistroSoporte_TipoSolicitud">
+            <End Role="TipoSolicitud" EntitySet="TipoSolicitud" />
+            <End Role="RegistroSoporte" EntitySet="RegistroSoporte" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="IdDepartment" />
+          </Key>
+          <Property Name="IdDepartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Departamento" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistroSoporte" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Departamentos1" FromRole="Departamentos" ToRole="RegistroSoporte" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado1" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistroSoporte" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Estado" FromRole="Estado" ToRole="RegistroSoporte" />
+        </EntityType>
+        <EntityType Name="Problemas">
+          <Key>
+            <PropertyRef Name="IdProblema" />
+          </Key>
+          <Property Name="IdProblema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistroSoporte" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Problemas" FromRole="Problemas" ToRole="RegistroSoporte" />
+        </EntityType>
+        <EntityType Name="RegistroSoporte">
+          <Key>
+            <PropertyRef Name="IdSoporte" />
+          </Key>
+          <Property Name="IdSoporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="DescripcionProblema" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DepartamentId" Type="Int32" />
+          <Property Name="IdProblem" Type="Int32" />
+          <Property Name="IdTipoSolicitud" Type="Int32" />
+          <Property Name="IdEstado" Type="Int32" />
+          <Property Name="IdSeveridad" Type="Int32" />
+          <Property Name="IdTecnico" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="AsignadoPor" Type="Int32" />
+          <Property Name="CerradoPor" Type="Int32" />
+          <NavigationProperty Name="Departamentos" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Departamentos1" FromRole="RegistroSoporte" ToRole="Departamentos" />
+          <NavigationProperty Name="Estado" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Estado" FromRole="RegistroSoporte" ToRole="Estado" />
+          <NavigationProperty Name="Problemas" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Problemas" FromRole="RegistroSoporte" ToRole="Problemas" />
+          <NavigationProperty Name="Severidad" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Severidad" FromRole="RegistroSoporte" ToRole="Severidad" />
+          <NavigationProperty Name="TipoSolicitud" Relationship="HelpDeskDBModel.FK_RegistroSoporte_TipoSolicitud" FromRole="RegistroSoporte" ToRole="TipoSolicitud" />
+        </EntityType>
+        <EntityType Name="RegistroUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoUsuario" Type="Int32" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PrimerNombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SegundoNombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DepartamentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Severidad">
+          <Key>
+            <PropertyRef Name="IdSeveridad" />
+          </Key>
+          <Property Name="IdSeveridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Severidad1" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistroSoporte" Relationship="HelpDeskDBModel.FK_RegistroSoporte_Severidad" FromRole="Severidad" ToRole="RegistroSoporte" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoSolicitud">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoSolicitud1" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistroSoporte" Relationship="HelpDeskDBModel.FK_RegistroSoporte_TipoSolicitud" FromRole="TipoSolicitud" ToRole="RegistroSoporte" />
+        </EntityType>
+        <EntityType Name="TipoUser">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoUsuario" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_RegistroSoporte_Departamentos1">
+          <End Role="Departamentos" Type="HelpDeskDBModel.Departamentos" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="IdDepartment" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="DepartamentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Estado">
+          <End Role="Estado" Type="HelpDeskDBModel.Estado" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Problemas">
+          <End Role="Problemas" Type="HelpDeskDBModel.Problemas" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problemas">
+              <PropertyRef Name="IdProblema" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdProblem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_Severidad">
+          <End Role="Severidad" Type="HelpDeskDBModel.Severidad" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Severidad">
+              <PropertyRef Name="IdSeveridad" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdSeveridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroSoporte_TipoSolicitud">
+          <End Role="TipoSolicitud" Type="HelpDeskDBModel.TipoSolicitud" Multiplicity="0..1" />
+          <End Role="RegistroSoporte" Type="HelpDeskDBModel.RegistroSoporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSolicitud">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="RegistroSoporte">
+              <PropertyRef Name="IdTipoSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HelpDeskDBModelStoreContainer" CdmEntityContainer="HelpDeskDBEntities">
+          <EntitySetMapping Name="Departamentos">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.Departamentos">
+              <MappingFragment StoreEntitySet="Departamentos">
+                <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado1" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Problemas">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.Problemas">
+              <MappingFragment StoreEntitySet="Problemas">
+                <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroSoporte">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.RegistroSoporte">
+              <MappingFragment StoreEntitySet="RegistroSoporte">
+                <ScalarProperty Name="IdSoporte" ColumnName="IdSoporte" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="DescripcionProblema" ColumnName="DescripcionProblema" />
+                <ScalarProperty Name="DepartamentId" ColumnName="DepartamentId" />
+                <ScalarProperty Name="IdProblem" ColumnName="IdProblem" />
+                <ScalarProperty Name="IdTipoSolicitud" ColumnName="IdTipoSolicitud" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdSeveridad" ColumnName="IdSeveridad" />
+                <ScalarProperty Name="IdTecnico" ColumnName="IdTecnico" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="AsignadoPor" ColumnName="AsignadoPor" />
+                <ScalarProperty Name="CerradoPor" ColumnName="CerradoPor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroUsuario">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.RegistroUsuario">
+              <MappingFragment StoreEntitySet="RegistroUsuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DepartamentId" ColumnName="DepartamentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Severidad">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.Severidad">
+              <MappingFragment StoreEntitySet="Severidad">
+                <ScalarProperty Name="IdSeveridad" ColumnName="IdSeveridad" />
+                <ScalarProperty Name="Severidad1" ColumnName="Severidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSolicitud">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.TipoSolicitud">
+              <MappingFragment StoreEntitySet="TipoSolicitud">
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+                <ScalarProperty Name="TipoSolicitud1" ColumnName="TipoSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUser">
+            <EntityTypeMapping TypeName="HelpDeskDBModel.TipoUser">
+              <MappingFragment StoreEntitySet="TipoUser">
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

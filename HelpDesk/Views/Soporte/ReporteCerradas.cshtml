@@ -1,0 +1,97 @@
+﻿@model IEnumerable<HelpDesk.RegistroSoporte>
+
+@{
+    ViewBag.Title = "ReporteCerradas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ReporteCerradas</h2>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSoporte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionProblema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartamentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProblem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipoSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEstado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSeveridad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTecnico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AsignadoPor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CerradoPor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdSoporte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionProblema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartamentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProblem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTipoSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdEstado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdSeveridad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTecnico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsignadoPor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CerradoPor)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17c28cf13c1b42c4862917cb5d1efdc7" Name="Diagram1">
+        <EntityTypeShape EntityType="HelpDeskDBModel.Departamentos" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.Estado" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.Problemas" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.RegistroSoporte" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.RegistroUsuario" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.Severidad" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.TipoSolicitud" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpDeskDBModel.TipoUser" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="HelpDeskDBModel.FK_RegistroSoporte_Departamentos1" ManuallyRouted="false" />
+        <AssociationConnector Association="HelpDeskDBModel.FK_RegistroSoporte_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="HelpDeskDBModel.FK_RegistroSoporte_Problemas" ManuallyRouted="false" />
+        <AssociationConnector Association="HelpDeskDBModel.FK_RegistroSoporte_Severidad" ManuallyRouted="false" />
+        <AssociationConnector Association="HelpDeskDBModel.FK_RegistroSoporte_TipoSolicitud" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
